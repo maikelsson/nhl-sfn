@@ -1,7 +1,50 @@
 import React from "react";
+import axios from "axios";
+import { LogoProvider } from "../utils/LogoProvider";
+
+interface ITeam {
+  id: number;
+  name: string;
+}
 
 interface Props {}
 
 export const Teams = (props: Props) => {
-  return <div>Teams!</div>;
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [teams, setTeams] = React.useState<ITeam[]>([]);
+
+  React.useEffect(() => {
+    setLoading(true);
+    const getTeams = async (): Promise<void> => {
+      try {
+        const res = await axios.get("/api/v1/teams");
+        setTeams(res.data.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getTeams();
+    setLoading(false);
+  }, []);
+
+  if (!teams && loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div>
+      <div>
+        {teams.map((t) => (
+          <>
+            <div className="flex" key={t.name}>
+              <i className="w-10" key={t.id}>
+                <LogoProvider teamId={t.id} />
+              </i>
+              {t.name}
+            </div>
+          </>
+        ))}
+      </div>
+    </div>
+  );
 };

@@ -12,7 +12,9 @@ export const LogoProvider: React.FC<ILogoProps> = ({ teamId, ...rest }): JSX.Ele
     setLoading(true);
     const importIcon = async (): Promise<void> => {
       try {
-        ImportedIconRef.current = (await import(`!!@svgr/webpack?-svgo,+titleProp,+ref!./${teamId}_dark.svg`)).default;
+        ImportedIconRef.current = (
+          await import(`!!@svgr/webpack?-svgo,+titleProp,+ref!./logos/${teamId}_dark.svg`)
+        ).default;
       } catch (err) {
         // Your own error handling logic, throwing error for the sake of
         // simplicity
@@ -28,7 +30,7 @@ export const LogoProvider: React.FC<ILogoProps> = ({ teamId, ...rest }): JSX.Ele
     const { current: ImportedIcon } = ImportedIconRef;
     return (
       <>
-        <ImportedIcon {...rest}/>
+        <ImportedIcon {...rest} />
       </>
     );
   }

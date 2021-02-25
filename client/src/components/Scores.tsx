@@ -1,6 +1,9 @@
 import React from "react";
-import { CustomDropDown } from "./Dropdown/CustomDropDown";
-import { IDropDownOptions } from "./Dropdown/interface";
+import { DatePicker } from "./common/DatePicker";
+import { CustomDropDown } from "./common/CustomDropDown";
+import { IDropDownOptions } from "./common/interfaces/interface";
+import { GameCard } from "./Game/GameCard";
+import axios from "axios";
 
 const options: IDropDownOptions = {
   header: "Choose nationality",
@@ -8,13 +11,33 @@ const options: IDropDownOptions = {
 };
 
 export const Scores = () => {
+  const [loading, setLoading] = React.useState<boolean>(true);
+  const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
+
+  React.useEffect(() => {
+    setLoading(true);
+    const getScores = async (): Promise<void> => {
+      const res = await axios.get(`/api/v1/scores/${"2020-02-23"}`);
+      console.log(res.data);
+    };
+    getScores();
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <>Loading...</>;
+  }
+
   return (
-    <div className="flex-col flex-auto items-center justify-center bg-gray-200 py-10 px-20">
-      <div className="bg-gray-100 shadow-lg h-14 mb-3 max-w-screen-lg">
+    <div className="">
+      <div className="bg-gray-100 shadow rounded h-14 mb-3 max-w-screen-lg flex items-center sm:justify-items-center">
         <CustomDropDown options={options} />
+        <DatePicker value="55" onChange={() => console.log("test")} />
       </div>
-      <div className="bg-gray-900 shadow">
-        <h5>Scores</h5>
+      <div className="">
+        <GameCard />
+        <GameCard />
+        <GameCard />
       </div>
     </div>
   );
