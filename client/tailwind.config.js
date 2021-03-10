@@ -8,6 +8,9 @@ module.exports = {
 			colors: {
 			}
 		},
+		fontFamily: {
+			'body': 'Helvetica',
+		},
   },
   variants: {
     extend: {},

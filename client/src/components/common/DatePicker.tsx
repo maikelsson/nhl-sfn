@@ -1,13 +1,13 @@
 import React from "react";
 
 interface Props {
-  date: number;
+  date: Date;
   onChange: (e: React.MouseEvent<HTMLButtonElement>, amount: number) => void;
 }
 
 export const DatePicker = (props: Props) => {
   return (
-    <div className="flex justify-evenly sm:w-3/5 w-full">
+    <div className="flex justify-evenly  w-full">
       <div>
         <button
           className="focus:outline-none hover:border-pink-700 border-b-2 border-transparent"

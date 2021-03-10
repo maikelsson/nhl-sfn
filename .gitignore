@@ -24,3 +24,5 @@ yarn-error.log*
 
 *.log
 debug.log
+
+TODO.md

@@ -1,31 +1,33 @@
 import React from "react";
 import { DatePicker } from "./common/DatePicker";
 import { CustomDropDown } from "./common/CustomDropDown";
-import { IDropDownOptions } from "./common/interfaces/interface";
-import { GameCard } from "./Game/GameCard";
+import { GameCard } from "./game/GameCard";
 import axios from "axios";
-
-const options: IDropDownOptions = {
-  header: "Choose nationality",
-  content: ["FIN", "SWE", "CAN", "USA", "CZE"],
-};
+import { findByDate } from "../api/score";
+import { dateToQueryFormat } from "../formatters/dateFormatter";
+import ScoresTopBarContainer from "./containers/ScoresTopBarContainer";
 
 export const Scores = () => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
   const [date, setDate] = React.useState<number>(25);
   const [selectedNation, setSelectedNation] = React.useState<string>("");
+  const [scores, setScores] = React.useState(null);
 
-  const getScores = async (): Promise<void> => {
-    const res = await axios.get(`/api/v1/scores/${"2020-02-23"}`);
-    console.log(res.data.data);
-  };
+  const getScoresWithDate = React.useCallback(async () => {
+    if (!date) return;
+    let response = await axios.get(`/api/v1/scores/${dateToQueryFormat(selectedDate)}`);
+    console.log(response);
+    //setScores(response);
+  }, [date]);
 
   React.useEffect(() => {
     setLoading(true);
-    getScores();
+    console.log(selectedDate);
+
+    //getScoresWithDate();
     setLoading(false);
-  }, []);
+  }, [getScoresWithDate]);
 
   const handleDateChange = (e: React.MouseEvent<HTMLButtonElement>, value: number) => {
     e.preventDefault();
@@ -44,12 +46,9 @@ export const Scores = () => {
   }
 
   return (
-    <div className="">
-      <div className="bg-gray-100 shadow rounded h-14 mb-3 max-w-screen-lg flex items-center sm:justify-items-center">
-        <CustomDropDown options={options} onChange={handleNationalityChange} current={selectedNation} />
-        <DatePicker date={date} onChange={handleDateChange} />
-      </div>
-      <div className="overflow-auto">
+    <div className="flex flex-col items-center justify-center ">
+      <ScoresTopBarContainer date={selectedDate} onDateChange={(newDate) => setSelectedDate(newDate)} />
+      <div className="flex flex-col overflow-auto w-3/4 max-w-screen-lg">
         <GameCard />
         <GameCard />
         <GameCard />

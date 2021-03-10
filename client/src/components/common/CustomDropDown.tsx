@@ -1,7 +1,7 @@
 import React from "react";
-import { IDropDownProps } from "./interfaces/interface";
+import { DropDownProps } from "./interfaces/interface";
 
-export const CustomDropDown = (props: IDropDownProps) => {
+export const CustomDropDown = (props: DropDownProps) => {
   return (
     <div className="hidden sm:flex">
       <div className="relative inline-flex">

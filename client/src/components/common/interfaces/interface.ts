@@ -1,10 +1,10 @@
-export type IDropDownOptions = {
+export type DropDownOptions = {
   header: string;
   content: string[];
 };
 
-export interface IDropDownProps {
-  options: IDropDownOptions;
+export interface DropDownProps {
+  options: DropDownOptions;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>, value: string) => void;
   current: string;
 }
