@@ -2,19 +2,6 @@ import React from "react";
 import { IDropDownProps } from "./interfaces/interface";
 
 export const CustomDropDown = (props: IDropDownProps) => {
-  const [selected, setSelected] = React.useState<string>("");
-
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    event.preventDefault();
-    setSelected(event.target.value);
-    console.log(selected);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("onSubmit");
-  };
-
   return (
     <div className="hidden sm:flex">
       <div className="relative inline-flex">
@@ -29,10 +16,10 @@ export const CustomDropDown = (props: IDropDownProps) => {
             fillRule="nonzero"
           />
         </svg>
-        <form className="text-sm" onSubmit={(e) => handleSubmit(e)}>
+        <form className="text-sm">
           <select
-            value={selected}
-            onChange={(e) => handleChange(e)}
+            value={props.current}
+            onChange={(e) => props.onChange(e, e.target.value)}
             className="bg-gray-100 h-8 pl-3 pr-8 border-none active:border-none focus:outline-none appearance-none cursor-pointer"
           >
             <option value="FIN">{props.options.header}</option>

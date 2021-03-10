@@ -16,8 +16,6 @@ export const LogoProvider: React.FC<ILogoProps> = ({ teamId, ...rest }): JSX.Ele
           await import(`!!@svgr/webpack?-svgo,+titleProp,+ref!./logos/${teamId}_dark.svg`)
         ).default;
       } catch (err) {
-        // Your own error handling logic, throwing error for the sake of
-        // simplicity
         console.log(err.message);
       } finally {
         setLoading(false);

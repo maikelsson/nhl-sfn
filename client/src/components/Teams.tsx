@@ -38,7 +38,7 @@ export const Teams = (props: Props) => {
           <>
             <div className="flex" key={t.name}>
               <i className="w-10" key={t.id}>
-                <LogoProvider teamId={t.id} />
+                <img src={`/images/${t.id}`} alt=""></img>
               </i>
               {t.name}
             </div>

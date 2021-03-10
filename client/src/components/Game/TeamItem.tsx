@@ -1,7 +1,3 @@
-import { promises } from "dns";
-import React from "react";
-import { LogoProvider } from "../../utils/LogoProvider";
-
 interface IProps {
   id: number;
   name: string;
@@ -10,12 +6,16 @@ interface IProps {
 
 export const TeamItem = (props: IProps) => {
   return (
-    <div className="flex flex-col">
-      <div className="w-auto">
-        <LogoProvider teamId={props.id} />
+    <div className="flex flex-col w-32">
+      <div className="flex justify-center items-center">
+        <i className="w-16">
+          <img src={`/images/${props.id}`} alt=""></img>
+        </i>
       </div>
-      <p>{props.name}</p>
-      <p>{props.record}</p>
+      <div className="mt-2 text-center leading-none text-current text-sm">
+        <p>{props.name}</p>
+        <p>{props.record}</p>
+      </div>
     </div>
   );
 };

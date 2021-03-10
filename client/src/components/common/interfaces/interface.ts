@@ -5,4 +5,6 @@ export type IDropDownOptions = {
 
 export interface IDropDownProps {
   options: IDropDownOptions;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>, value: string) => void;
+  current: string;
 }

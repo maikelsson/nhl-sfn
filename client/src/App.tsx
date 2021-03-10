@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Router>
       <div className="flex flex-1 flex-col h-screen font-mono">
-        <div className="flex h-24 bg-gray-900 justify-items-center items-center border-b-2 border-pink-700 text-gray-50 ">
+        <div className="fixed top-0 w-full flex h-24 bg-gray-900 justify-items-center items-center  border-b-2 border-pink-700 text-gray-50 ">
           <nav className="flex flex-auto justify-evenly transition-colors items-center">
             <span className="hover:text-gray-400">
               <Link to="/">Scores</Link>
@@ -21,7 +21,7 @@ const App = () => {
             </span>
           </nav>
         </div>
-        <div className="flex-col flex-auto items-center justify-center bg-gray-200 sm:p-10">
+        <div className="mt-24 overflow-auto flex-col flex-auto items-center justify-center bg-gray-200 sm:p-10">
           <Switch>
             <Route exact path="/" component={Scores} />
             <Route path="/scores" component={Scores} />
