@@ -1,5 +1,6 @@
 import React from "react";
 import { TeamItem } from "../game/TeamItem";
+import { GameStatus } from "./GameStatus";
 
 interface Props {
   game: any;
@@ -10,11 +11,13 @@ export const GameCard = (props: Props) => {
     <div className="bg-gray-100 shadow-lg mb-3 md:rounded flex items-center" style={{ height: "182px" }}>
       <div className="flex justify-content-center w-full">
         <TeamItem team={props.game.teams.home} />
-        <div className="flex bold items-center justify-between w-40">
-          <h2>{props.game.teams.home.score}</h2>
-          <h4>{props.game.status.detailedState}</h4>
-          <p>{props.game.teams.away.score}</p>
-        </div>
+        <GameStatus
+          info={{
+            homeScore: props.game.teams.home.score,
+            awayScore: props.game.teams.away.score,
+            status: props.game.status.detailedState,
+          }}
+        />
         <TeamItem team={props.game.teams.away} />
       </div>
       <div className="hidden lg:hidden md:flex w-full bg-red-300">medium</div>

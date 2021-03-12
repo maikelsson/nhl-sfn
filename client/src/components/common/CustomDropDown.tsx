@@ -1,7 +1,20 @@
 import React from "react";
-import { DropDownProps } from "./interfaces/interface";
+import { DropDownOptions } from "./interfaces/interface";
+import { setNationality } from "../../redux/reducers/scores/actions";
+import { connect, useDispatch } from "react-redux";
 
-export const CustomDropDown = (props: DropDownProps) => {
+interface Props {
+  options: DropDownOptions;
+  selectedNationality: string;
+}
+
+const CustomDropDown = (props: Props) => {
+  React.useEffect(() => {
+    console.log("useEffect nationality changed");
+  }, [props.selectedNationality]);
+
+  const dispatch = useDispatch();
+
   return (
     <div className="hidden sm:flex">
       <div className="relative inline-flex">
@@ -18,8 +31,8 @@ export const CustomDropDown = (props: DropDownProps) => {
         </svg>
         <form className="text-sm">
           <select
-            value={props.current}
-            onChange={(e) => props.onChange(e, e.target.value)}
+            value={props.selectedNationality}
+            onChange={(e) => dispatch(setNationality(e.target.value))}
             className="bg-gray-100 h-8 pl-3 pr-8 border-none active:border-none focus:outline-none appearance-none cursor-pointer"
           >
             <option value="">{props.options.header}</option>
@@ -34,3 +47,12 @@ export const CustomDropDown = (props: DropDownProps) => {
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    selectedNationality: state.selections.selectedNationality,
+  };
+};
+
+const ConnectedCustomDropDown = connect(mapStateToProps)(CustomDropDown);
+export default ConnectedCustomDropDown;

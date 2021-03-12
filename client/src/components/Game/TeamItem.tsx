@@ -31,7 +31,7 @@ export const TeamItem = (props: Props) => {
       </div>
       <div className="mt-2 text-center leading-none text-current text-sm">
         <p>{props.team.team.teamName}</p>
-        <p>{displayLeagueRecord(props.team.leagueRecord)}</p>
+        {displayLeagueRecord(props.team.leagueRecord)}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ScoreResponse } from "./interface";
+import { ErrorResponse, ScoreResponse } from "./interface";
 
 export const findScoresByDate = async (date: string): Promise<ScoreResponse> => {
   try {
@@ -7,6 +7,10 @@ export const findScoresByDate = async (date: string): Promise<ScoreResponse> => 
     const result: ScoreResponse = await response.data;
     return result;
   } catch (error) {
-    return error.message.json();
+    const err = {
+      success: false,
+      data: error.message,
+    };
+    return err;
   }
 };

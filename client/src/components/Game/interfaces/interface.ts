@@ -1,1 +1,5 @@
-export interface GameDetails {}
+export interface GameStatusInfo {
+  homeScore: number;
+  awayScore: number;
+  status: string;
+}
