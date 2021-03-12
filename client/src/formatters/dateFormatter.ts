@@ -4,3 +4,9 @@ export const dateToQueryFormat = (date: Date, amt: number = 0): string => {
   return res;
 };
 
+export const dateToDisplayFormat = (date: Date): string => {
+  const opts: Intl.DateTimeFormatOptions = { weekday: "long", day: "numeric", month: "short" };
+  let result: string = date.toLocaleDateString("en-us", opts);
+  console.log(result);
+  return result;
+};

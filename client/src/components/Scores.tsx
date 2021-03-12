@@ -3,36 +3,48 @@ import { DatePicker } from "./common/DatePicker";
 import { CustomDropDown } from "./common/CustomDropDown";
 import { GameCard } from "./game/GameCard";
 import axios from "axios";
-import { findByDate } from "../api/score";
+import { findScoresByDate } from "../api/score";
 import { dateToQueryFormat } from "../formatters/dateFormatter";
-import ScoresTopBarContainer from "./containers/ScoresTopBarContainer";
+import { DropDownOptions } from "./common/interfaces/interface";
+import { ScoreResponse } from "../api/score/interface";
+
+const options: DropDownOptions = {
+  header: "Choose nationality",
+  content: ["FIN", "SWE", "CAN", "USA", "CZE"],
+};
 
 export const Scores = () => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [selectedDate, setSelectedDate] = React.useState<Date>(new Date());
-  const [date, setDate] = React.useState<number>(25);
   const [selectedNation, setSelectedNation] = React.useState<string>("");
   const [scores, setScores] = React.useState(null);
 
   const getScoresWithDate = React.useCallback(async () => {
-    if (!date) return;
-    let response = await axios.get(`/api/v1/scores/${dateToQueryFormat(selectedDate)}`);
-    console.log(response);
-    //setScores(response);
-  }, [date]);
+    if (!selectedDate) return;
+    setLoading(true);
+    const response: ScoreResponse = await findScoresByDate(dateToQueryFormat(selectedDate));
+    if (response.success) {
+      setScores(response.data);
+    } else {
+      // handle errors!
+      return;
+    }
+    setLoading(false);
+  }, [selectedDate]);
 
   React.useEffect(() => {
     setLoading(true);
     console.log(selectedDate);
-
-    //getScoresWithDate();
+    getScoresWithDate();
     setLoading(false);
-  }, [getScoresWithDate]);
+  }, [getScoresWithDate, selectedDate]);
 
   const handleDateChange = (e: React.MouseEvent<HTMLButtonElement>, value: number) => {
     e.preventDefault();
+    let dateInMs: number = new Date(selectedDate).setDate(new Date(selectedDate).getDate() + value);
     console.log("date changed!", value);
-    setDate(date + value);
+    const newDate: Date = new Date(dateInMs);
+    setSelectedDate(newDate);
   };
 
   const handleNationalityChange = (e: React.ChangeEvent<HTMLSelectElement>, value: string) => {
@@ -41,20 +53,18 @@ export const Scores = () => {
     console.log("nationality changed!", value);
   };
 
-  if (loading) {
+  if (loading || !scores) {
     return <>Loading...</>;
   }
 
   return (
     <div className="flex flex-col items-center justify-center ">
-      <ScoresTopBarContainer date={selectedDate} onDateChange={(newDate) => setSelectedDate(newDate)} />
+      <div className=" w-3/4 bg-gray-100 shadow rounded h-14 mb-3 max-w-screen-lg flex items-center sm:justify-items-center">
+        <CustomDropDown options={options} onChange={handleNationalityChange} current={selectedNation} />
+        <DatePicker date={selectedDate} onChange={handleDateChange} />
+      </div>
       <div className="flex flex-col overflow-auto w-3/4 max-w-screen-lg">
-        <GameCard />
-        <GameCard />
-        <GameCard />
-        <GameCard />
-        <GameCard />
-        <GameCard />
+        {scores ? scores.map((g) => <GameCard game={g} />) : <div>Loading</div>}
       </div>
     </div>
   );

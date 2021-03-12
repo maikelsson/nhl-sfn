@@ -22,7 +22,7 @@ export const CustomDropDown = (props: DropDownProps) => {
             onChange={(e) => props.onChange(e, e.target.value)}
             className="bg-gray-100 h-8 pl-3 pr-8 border-none active:border-none focus:outline-none appearance-none cursor-pointer"
           >
-            <option value="FIN">{props.options.header}</option>
+            <option value="">{props.options.header}</option>
             {props.options.content.map((c, i) => (
               <option key={i} value={c}>
                 {c}

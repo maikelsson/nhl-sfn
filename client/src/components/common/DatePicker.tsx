@@ -1,5 +1,5 @@
 import React from "react";
-
+import { dateToDisplayFormat } from "../../formatters/dateFormatter";
 interface Props {
   date: Date;
   onChange: (e: React.MouseEvent<HTMLButtonElement>, amount: number) => void;
@@ -16,7 +16,7 @@ export const DatePicker = (props: Props) => {
           prev
         </button>
       </div>
-      <div className="border-b-2 border-pink-700">{props.date}</div>
+      <div className="border-b-2 border-pink-700">{dateToDisplayFormat(props.date)}</div>
       <div>
         <button
           className="focus:outline-none hover:border-pink-700 border-b-2 border-transparent "

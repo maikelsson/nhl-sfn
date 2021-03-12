@@ -1,10 +1,11 @@
 import axios from "axios";
+import { ScoreResponse } from "./interface";
 
-export const findByDate = async (date: string): Promise<void> => {
+export const findScoresByDate = async (date: string): Promise<ScoreResponse> => {
   try {
-    const res = await axios.get(`/api/v1/scores/${date}`);
-    console.log(res);
-    return res.data;
+    const response = await axios.get(`/api/v1/scores/${date}`);
+    const result: ScoreResponse = await response.data;
+    return result;
   } catch (error) {
     return error.message.json();
   }
