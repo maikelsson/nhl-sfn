@@ -29,9 +29,9 @@ export const TeamItem = (props: Props) => {
           <img src={`/images/${props.team.team.id}`} alt=""></img>
         </i>
       </div>
-      <div className="mt-2 text-center leading-none text-current text-sm">
-        <p>{props.team.team.teamName}</p>
-        {displayLeagueRecord(props.team.leagueRecord)}
+      <div className="mt-2 text-center leading-none text-current flex flex-col justify-end">
+        <p className="font-normal">{props.team.team.teamName}</p>
+        <p className="text-gray-500 text-sm">{displayLeagueRecord(props.team.leagueRecord)}</p>
       </div>
     </div>
   );
