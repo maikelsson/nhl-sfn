@@ -1,6 +1,7 @@
 import React from "react";
 import { TeamItem } from "../game/TeamItem";
 import { GameStatus } from "./GameStatus";
+import { PlayerInfoCarousel } from "./PlayerInfoCarousel";
 
 interface Props {
   game: any;
@@ -8,11 +9,8 @@ interface Props {
 
 export const GameCard = (props: Props) => {
   return (
-    <div
-      className="flex bg-gray-100 shadow-lg mb-3 md:rounded justify-content-center items-center"
-      style={{ height: "182px" }}
-    >
-      <div className="flex justify-content-center md:w-full items-center content-center w-full">
+    <div className="flex bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center" style={{ height: "182px" }}>
+      <div className="flex justify-center items-center content-center w-full">
         <TeamItem team={props.game.teams.home} />
         <GameStatus
           info={{
@@ -24,8 +22,14 @@ export const GameCard = (props: Props) => {
         />
         <TeamItem team={props.game.teams.away} />
       </div>
-      <div className="hidden lg:hidden md:flex w-20 bg-red-300">medium</div>
-      <div className="hidden lg:flex w-full bg-blue-300">large</div>
+      <div className="hidden lg:hidden md:flex w-full bg-red-300">medium</div>
+      <div className="hidden lg:flex w-full">
+        <PlayerInfoCarousel
+          scoringPlays={props.game.scoringPlays}
+          homeLeaders={props.game.teams.home.team.teamLeaders}
+          awayLeaders={props.game.teams.away.team.teamLeaders}
+        />
+      </div>
     </div>
   );
 };

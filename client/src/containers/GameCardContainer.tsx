@@ -43,7 +43,7 @@ const Container = (props: Props) => {
   }
 
   return (
-    <div className="flex flex-col overflow-auto w-3/4 max-w-screen-lg">
+    <div className="flex flex-col overflow-auto w-5/6 sm:w-full">
       {scores ? scores.map((g, id) => <GameCard key={id} game={g} />) : <div>Loading</div>}
     </div>
   );
