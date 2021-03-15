@@ -6,7 +6,11 @@ interface Props {
 }
 
 const GameTopPlayers = (props: Props) => {
-  return <div>{props.selectedDate}</div>;
+  React.useEffect(() => {
+    console.log("gameTopPlayers");
+  }, []);
+
+  return <div>gametop</div>;
 };
 
 const mapStateToProps = (state) => {

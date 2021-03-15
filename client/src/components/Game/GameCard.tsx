@@ -28,6 +28,8 @@ export const GameCard = (props: Props) => {
           scoringPlays={props.game.scoringPlays}
           homeLeaders={props.game.teams.home.team.teamLeaders}
           awayLeaders={props.game.teams.away.team.teamLeaders}
+          homeAbbr={props.game.teams.home.team.abbreviation}
+          awayAbbr={props.game.teams.away.team.abbreviation}
         />
       </div>
     </div>
