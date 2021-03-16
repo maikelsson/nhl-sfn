@@ -1,15 +1,20 @@
 import React from "react";
+import { Games } from "../../api/score/interface";
 import { TeamItem } from "../game/TeamItem";
 import { GameStatus } from "./GameStatus";
 import { PlayerInfoCarousel } from "./PlayerInfoCarousel";
 
 interface Props {
-  game: any;
+  game: Games;
 }
 
 export const GameCard = (props: Props) => {
+  React.useEffect(() => {
+    console.log(props.game.points);
+  }, []);
+
   return (
-    <div className="flex bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center" style={{ height: "182px" }}>
+    <div className="flex hover:bg-pink-200 transition-all bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center h-32 sm:h-40">
       <div className="flex justify-center items-center content-center w-full">
         <TeamItem team={props.game.teams.home} />
         <GameStatus

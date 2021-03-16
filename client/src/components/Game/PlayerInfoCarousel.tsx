@@ -15,13 +15,12 @@ export const PlayerInfoCarousel = (props: Props) => {
   const [pageId, setPageId] = React.useState<number>(0);
 
   const displayComponent = () => {
-    console.log("DispCOm");
     if (pageId === 0) {
       return (
-        <>
+        <div className="flex justify-center flex-row p-1">
           <ConnectedTeamTopPlayers abbreviation={props.homeAbbr} leaders={props.homeLeaders} />
           <ConnectedTeamTopPlayers abbreviation={props.awayAbbr} leaders={props.awayLeaders} />
-        </>
+        </div>
       );
     } else {
       return <ConnectedGameTopPlayers />;
@@ -45,7 +44,7 @@ export const PlayerInfoCarousel = (props: Props) => {
   return (
     <div className="flex w-full justify-between items-center mx-2">
       <ArrowButton onClick={prevComponent} orientation="left" />
-      <div className="flex justify-center flex-row p-1 w-full">{displayComponent()}</div>
+      <div className="w-full justify-center flex">{displayComponent()}</div>
       <ArrowButton onClick={nextComponent} orientation="right" />
     </div>
   );

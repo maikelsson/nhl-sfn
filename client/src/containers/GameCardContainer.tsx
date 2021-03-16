@@ -24,6 +24,7 @@ const Container = (props: Props) => {
       setError(response.data);
       return;
     }
+
     setLoading(false);
   }, [props.selectedDate]);
 
@@ -43,7 +44,7 @@ const Container = (props: Props) => {
   }
 
   return (
-    <div className="flex flex-col overflow-auto w-5/6 sm:w-full">
+    <div className="flex flex-col overflow-auto w-5/6 sm:w-full ">
       {scores ? scores.map((g, id) => <GameCard key={id} game={g} />) : <div>Loading</div>}
     </div>
   );

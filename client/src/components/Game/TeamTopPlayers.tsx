@@ -18,13 +18,13 @@ const TeamTopPlayers = (props: Props) => {
     console.log("teamtop");
   }, [props.selectedNationality]);
   return (
-    <div className="w-3/6 text-sm flex p-1">
+    <div className=" text-sm flex p-1 ml-1">
       <div className="text-gray-800 font-medium">{props.abbreviation}</div>
-      <div className="ml-2 w-full font-medium text-gray-500">
+      <div className="ml-2 w-auto font-medium text-gray-500">
         <LeaderPlayer
-          name={props.leaders[2].leaders[0].person.fullName}
-          category={props.leaders[2].leaderCategory}
-          value={props.leaders[2].leaders[0].value}
+          name={props.leaders[0].leaders[0].person.fullName}
+          category={props.leaders[0].leaderCategory}
+          value={props.leaders[0].leaders[0].value}
         />
         <LeaderPlayer
           name={props.leaders[1].leaders[0].person.fullName}
@@ -32,9 +32,9 @@ const TeamTopPlayers = (props: Props) => {
           value={props.leaders[1].leaders[0].value}
         />
         <LeaderPlayer
-          name={props.leaders[0].leaders[0].person.fullName}
-          category={props.leaders[0].leaderCategory}
-          value={props.leaders[0].leaders[0].value}
+          name={props.leaders[2].leaders[0].person.fullName}
+          category={props.leaders[2].leaderCategory}
+          value={props.leaders[2].leaders[0].value}
         />
       </div>
     </div>
