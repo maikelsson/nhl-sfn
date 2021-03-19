@@ -12,13 +12,14 @@ export interface Games {
   gameDate: string;
   status: Status;
   teams: TeamPair;
-  scoringPlays: ScoringPlays;
+  scoringPlays: ScoringPlays[];
   points?: Points;
 }
 
 export interface ScoringPlays {
   players: ScoringPlayer[];
   result: ScoringPlayResult;
+  team: TeamInfo;
 }
 
 export interface Points {
@@ -26,19 +27,25 @@ export interface Points {
   away?: PointsTeam;
 }
 
-interface PointsTeam {
-  players: PointsPlayer[];
+export interface TeamDetailsShort {
+  id: number;
+  name: string;
+  abbreviation: string;
 }
 
-interface PointsPlayer {
+export interface PointsTeam {
+  team: TeamDetailsShort;
+  players: Map<number, PointsPlayer>;
+}
+
+export interface PointsPlayer {
   player: PersonShort;
   stats: Stats;
 }
 
-interface Stats {
+export interface Stats {
   goals: number;
   assists: number;
-  points: number;
 }
 
 interface Status {
@@ -100,7 +107,7 @@ interface Leader {
   season: string;
 }
 
-interface ScoringPlayer {
+export interface ScoringPlayer {
   player: PersonShort;
   playerType: string;
   seasonTotal: number;

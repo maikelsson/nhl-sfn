@@ -30,7 +30,7 @@ export const GameCard = (props: Props) => {
       <div className="hidden lg:hidden md:flex w-full bg-red-300">medium</div>
       <div className="hidden lg:flex w-full">
         <PlayerInfoCarousel
-          scoringPlays={props.game.scoringPlays}
+          points={props.game.points}
           homeLeaders={props.game.teams.home.team.teamLeaders}
           awayLeaders={props.game.teams.away.team.teamLeaders}
           homeAbbr={props.game.teams.home.team.abbreviation}
