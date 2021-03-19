@@ -4,11 +4,11 @@ import ConnectedGameTopPlayers from "./GameTopPlayers";
 import ConnectedTeamTopPlayers from "./TeamTopPlayers";
 
 interface Props {
-  scoringPlays?: any;
   homeLeaders?: any;
   awayLeaders?: any;
   homeAbbr?: string;
   awayAbbr?: string;
+  points?: any;
 }
 
 export const PlayerInfoCarousel = (props: Props) => {
@@ -23,12 +23,17 @@ export const PlayerInfoCarousel = (props: Props) => {
         </div>
       );
     } else {
-      return <ConnectedGameTopPlayers />;
+      return (
+        <div className="flex justify-center flex-row p-1">
+          <ConnectedGameTopPlayers stats={props.points.home} />
+          <ConnectedGameTopPlayers stats={props.points.away} />
+        </div>
+      );
     }
   };
 
   React.useEffect(() => {
-    //console.log(props.scoringPlays);
+    console.log(props.points);
   }, []);
 
   const prevComponent = () => {

@@ -19,6 +19,7 @@ const Container = (props: Props) => {
     setLoading(true);
     const response: ScoreResponse = await findScoresByDate(dateToQueryFormat(props.selectedDate));
     if (response.success) {
+      console.log(response);
       setScores(response.data);
     } else {
       setError(response.data);
