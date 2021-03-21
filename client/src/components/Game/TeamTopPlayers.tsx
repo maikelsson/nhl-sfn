@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { formatFullName } from "../../formatters/nameFormatter";
 
 interface Props {
   selectedNationality: string;
@@ -14,9 +15,7 @@ interface PlayerProps {
 }
 
 const TeamTopPlayers = (props: Props) => {
-  React.useEffect(() => {
-    console.log("teamtop");
-  }, [props.selectedNationality]);
+  React.useEffect(() => {}, [props.selectedNationality]);
   return (
     <div className=" text-sm flex p-1 ml-1">
       <div className="text-gray-800 font-medium">{props.abbreviation}</div>
@@ -42,11 +41,6 @@ const TeamTopPlayers = (props: Props) => {
 };
 
 const LeaderPlayer = (props: PlayerProps) => {
-  const formatFullName = (name: string): string => {
-    let arr = name.split(" ");
-    return arr.length > 2 ? `${arr[0][0]}.${arr[1]} ${arr[2]}` : `${arr[0][0]}.${arr[1]}`;
-  };
-
   return (
     <div>
       {formatFullName(props.name)}: {props.value} {props.category}

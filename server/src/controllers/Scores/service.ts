@@ -5,7 +5,7 @@ export const ScoreService: IScoreService = {
   async findOne(date: string): Promise<any> {
     try {
       const response = await axios.get(
-        `https://statsapi.web.nhl.com/api/v1/schedule?date=${date}&hydrate=team(leaders(categories=[points,goals,assists],gameTypes=[R])),scoringplays`
+        `https://statsapi.web.nhl.com/api/v1/schedule?date=${date}&hydrate=team(leaders(categories=[points,goals,assists],gameTypes=[R])),scoringplays(person)`
       );
       const games = await response.data.dates[0].games;
       return games;

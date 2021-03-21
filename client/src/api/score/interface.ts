@@ -23,14 +23,19 @@ export interface ScoringPlays {
 }
 
 export interface Points {
-  home?: PointsTeam;
-  away?: PointsTeam;
+  home?: PointsTeamResult;
+  away?: PointsTeamResult;
 }
 
 export interface TeamDetailsShort {
   id: number;
   name: string;
   abbreviation: string;
+}
+
+export interface PointsTeamResult {
+  team: TeamDetailsShort;
+  players: PointsPlayer[];
 }
 
 export interface PointsTeam {

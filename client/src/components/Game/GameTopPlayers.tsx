@@ -1,65 +1,63 @@
 import React from "react";
 import { connect } from "react-redux";
-import { PlayerInfoCarousel } from "./PlayerInfoCarousel";
+import { PointsPlayer } from "../../api/score/interface";
+import { formatFullName } from "../../formatters/nameFormatter";
 
 interface Props {
-  selectedDate: Date;
+  selectedNationality: string;
   stats: any;
 }
 
-interface PlayerProps {
-  name: string;
-  goals: number;
-  assists: number;
+interface StatsPlayerProps {
+  player: PointsPlayer;
 }
 
 const GameTopPlayers = (props: Props) => {
-  const [players, setPlayers] = React.useState<any[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
-  React.useEffect(() => {
-    console.log("gameTopPlayers", props.stats.players);
-    props.stats.players.forEach((p) => {
-      let player: PlayerProps = {
-        name: p.player.fullName,
-        goals: p.stats.goals,
-        assists: p.stats.assists,
-      };
+  const renderStatsPlayers = () => {
+    let arr = props.stats.players.sort(
+      (p1: PointsPlayer, p2: PointsPlayer) => calculatePoints(p2) - calculatePoints(p1)
+    );
+    return (
+      <>
+        {arr.length > 0 ? (
+          arr.map((p, id) => (
+            <div className={`${p.player.nationality === props.selectedNationality ? "font-bold" : ""}`} key={id}>
+              <StatsPlayer player={p} />
+            </div>
+          ))
+        ) : (
+          <div>none</div>
+        )}
+      </>
+    );
+  };
 
-      let arr = players.concat({ player });
-      setPlayers((old) => [...old, arr]);
-    });
-    console.log(players);
-  }, []);
+  const calculatePoints = (p: PointsPlayer): number => {
+    const result = p.stats.assists + p.stats.goals;
+    return result;
+  };
 
   return (
     <div className=" text-sm flex p-1 ml-1">
-      <div className="text-gray-800 font-medium">{props.stats.team.abbreviation}</div>
-      <div className="ml-2 w-auto font-medium text-gray-500">
-        {players
-          ? players.map((p, id) => (
-              <div key={id}>
-                <StatsPlayer props={p} />
-              </div>
-            ))
-          : null}
+      <div className="text-gray-800 font-medium flex self-center content-center">{props.stats.team.abbreviation}</div>
+      <div className="ml-2 w-auto font-medium text-gray-500 flex flex-col self-center overflow-auto max-h-28">
+        {renderStatsPlayers()}
       </div>
     </div>
   );
 };
 
-const StatsPlayer = (props: any) => {
-  console.log(props, "statsPlayer");
-
+const StatsPlayer = (props: StatsPlayerProps) => {
   return (
     <div>
-      {props.name}: {props.goals}+{props.assists}
+      {formatFullName(props.player.player.fullName)}: {props.player.stats.goals}+{props.player.stats.assists}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    selectedDate: state.selections.selectedDate,
+    selectedNationality: state.selections.selectedNationality,
   };
 };
 

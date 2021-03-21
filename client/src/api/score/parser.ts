@@ -7,6 +7,7 @@ import {
   PointsPlayer,
   ScoringPlayer,
   Stats,
+  PointsTeamResult,
 } from "./interface";
 
 export const parseResponse = async (games: Games[]): Promise<Games[]> => {
@@ -39,7 +40,11 @@ const getPointsFromGame = (plays: ScoringPlays[], home: TeamDetailsShort, away: 
       updatePlayers(awayPoints.players, p.players);
     }
   });
-  let res: Points = { away: awayPoints, home: homePoints };
+
+  let homeResult: PointsTeamResult = { team: home, players: Array.from(homePoints.players.values()) };
+  let awayResult: PointsTeamResult = { team: away, players: Array.from(awayPoints.players.values()) };
+
+  let res: Points = { away: awayResult, home: homeResult };
   return res;
 };
 
@@ -47,8 +52,8 @@ const updatePlayers = (current: Map<number, PointsPlayer>, payload: ScoringPlaye
   payload.forEach((p) => {
     if (!current.get(p.player.id)) {
       if (p.playerType === "Goalie") return;
-      let sp: PointsPlayer = createPointsPlayer(p);
-      current.set(p.player.id, sp);
+      let pointsPlayer: PointsPlayer = createPointsPlayer(p);
+      current.set(p.player.id, pointsPlayer);
     } else {
       let pointsPlayer: PointsPlayer = current.get(p.player.id);
       updatePointsPlayer(pointsPlayer, p);
