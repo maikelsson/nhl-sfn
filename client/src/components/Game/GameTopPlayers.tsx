@@ -13,14 +13,23 @@ interface StatsPlayerProps {
 }
 
 const GameTopPlayers = (props: Props) => {
+  const [showMore, setShowMore] = React.useState<boolean>(false);
+  React.useEffect(() => {
+    setShowMore(false);
+  }, [props.stats]);
+
   const renderStatsPlayers = () => {
-    let arr = props.stats.players.sort(
-      (p1: PointsPlayer, p2: PointsPlayer) => calculatePoints(p2) - calculatePoints(p1)
-    );
+    let arr = props.stats.players
+      .sort((p1: PointsPlayer, p2: PointsPlayer) => calculatePoints(p2) - calculatePoints(p1))
+      .sort(
+        (p1: PointsPlayer, p2: PointsPlayer) =>
+          (p2.player.nationality === props.selectedNationality ? 1 : -1) -
+          (p1.player.nationality === props.selectedNationality ? 1 : -1)
+      );
     return (
       <>
         {arr.length > 0 ? (
-          arr.map((p, id) => (
+          arr.slice(0, showMore ? arr.length : 4).map((p, id) => (
             <div className={`${p.player.nationality === props.selectedNationality ? "font-bold" : ""}`} key={id}>
               <StatsPlayer player={p} />
             </div>
@@ -28,6 +37,14 @@ const GameTopPlayers = (props: Props) => {
         ) : (
           <div>none</div>
         )}
+        {arr.length > 4 && !showMore ? (
+          <button
+            onClick={() => setShowMore(true)}
+            className="text-xs text-gray-900 hover:text-pink-600 focus:outline-none"
+          >
+            more...
+          </button>
+        ) : null}
       </>
     );
   };
@@ -47,7 +64,7 @@ const GameTopPlayers = (props: Props) => {
   );
 };
 
-const StatsPlayer = (props: StatsPlayerProps) => {
+export const StatsPlayer = (props: StatsPlayerProps) => {
   return (
     <div>
       {formatFullName(props.player.player.fullName)}: {props.player.stats.goals}+{props.player.stats.assists}

@@ -10,11 +10,11 @@ interface Props {
 
 export const GameCard = (props: Props) => {
   React.useEffect(() => {
-    console.log(props.game.points);
+    //console.log(props.game.points);
   }, []);
 
   return (
-    <div className="flex hover:bg-pink-200 transition-all bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center h-32 sm:h-40">
+    <div className="flex hover:bg-pink-200 transition-all bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center h-48">
       <div className="flex justify-center items-center content-center w-full">
         <TeamItem team={props.game.teams.home} />
         <GameStatus
@@ -37,6 +37,7 @@ export const GameCard = (props: Props) => {
           awayAbbr={props.game.teams.away.team.abbreviation}
         />
       </div>
+      <div className="container md:hidden bg-green-300">button</div>
     </div>
   );
 };

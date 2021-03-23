@@ -16,8 +16,8 @@ const CustomDropDown = (props: Props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="hidden sm:flex">
-      <div className="relative inline-flex">
+    <div className="hidden sm:flex  ">
+      <div className="relative inline-flex ">
         <svg
           className="w-2 h-2 absolute top-0 right-0 m-3 pointer-events-none font-mono"
           xmlns="http://www.w3.org/2000/svg"
@@ -29,13 +29,15 @@ const CustomDropDown = (props: Props) => {
             fillRule="nonzero"
           />
         </svg>
-        <form className="text-sm">
+        <form className="text-sm transition-all bg-red-500">
           <select
             value={props.selectedNationality}
             onChange={(e) => dispatch(setNationality(e.target.value))}
             className="bg-gray-100 h-8 pl-3 pr-8 border-none active:border-none focus:outline-none appearance-none cursor-pointer"
           >
-            <option value="">{props.options.header}</option>
+            <option value="" className="bg-red-300">
+              {props.options.header}
+            </option>
             {props.options.content.map((c, i) => (
               <option key={i} value={c}>
                 {c}

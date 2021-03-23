@@ -9,7 +9,7 @@ module.exports = {
 			}
 		},
 		fontFamily: {
-			'body': 'Helvetica',
+			'sans': 'Inter',
 		},
   },
   variants: {

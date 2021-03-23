@@ -13,9 +13,11 @@ interface Props {}
 
 const Container = (props: Props) => {
   return (
-    <div className=" w-3/4 bg-gray-100 shadow rounded h-14 mb-3 max-w-screen-lg flex items-center sm:justify-items-center">
-      <ConnectedCustomDropDown options={options} />
-      <ConnectedDatePicker />
+    <div className="flex flex-col overflow-auto sm:w-5/6 w-full sm:my-2">
+      <div className=" bg-gray-100 shadow rounded h-14 mb-3 flex items-center sm:justify-items-center">
+        <ConnectedCustomDropDown options={options} />
+        <ConnectedDatePicker />
+      </div>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { LogoProvider } from "../utils/LogoProvider";
 
 interface ITeam {
   id: number;
