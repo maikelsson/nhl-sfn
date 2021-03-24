@@ -26,7 +26,7 @@ export const TeamItem = (props: Props) => {
     <div className="flex flex-col w-32">
       <div className="flex justify-center items-center">
         <i className="w-16">
-          <img src={`/images/${props.team.team.id}`} alt=""></img>
+          <img src={process.env.REACT_APP_API_URL + `/images/${props.team.team.id}`} alt=""></img>
         </i>
       </div>
       <div className="mt-2 text-center leading-none text-current flex flex-col justify-end">

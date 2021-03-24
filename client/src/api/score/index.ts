@@ -4,9 +4,8 @@ import { parseResponse } from "./parser";
 
 export const findScoresByDate = async (date: string): Promise<ScoreResponse> => {
   try {
-    const response = await axios.get(`/api/v1/scores/${date}`, {
-      baseURL: "https://gentle-tor-21418.herokuapp.com",
-    });
+    console.log("api url, ", process.env.REACT_APP_API_URL);
+    const response = await axios.get(process.env.REACT_APP_API_URL + `/scores/${date}`);
     const result: any = await parseResponse(response.data.data);
     return { success: response.data.success, data: result };
   } catch (error) {

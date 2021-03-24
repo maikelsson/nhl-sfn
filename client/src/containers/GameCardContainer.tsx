@@ -56,7 +56,9 @@ const Container = (props: Props) => {
         <>
           <ConnectedNationTopPlayers scores={scores} />
           {scores.map((g, id) => (
-            <GameCard key={id} game={g} />
+            <div key={id}>
+              <GameCard game={g} />
+            </div>
           ))}
         </>
       ) : (

@@ -12,6 +12,7 @@ const NationTopPlayers = (props: Props) => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [nationTop, setNationTop] = React.useState<PointsPlayer[]>();
 
+  // can be improved?
   const parseNationPlayers = React.useCallback(async (): Promise<void> => {
     let arr: PointsPlayer[] = [];
     props.scores.forEach((game) => {
@@ -44,7 +45,7 @@ const NationTopPlayers = (props: Props) => {
   } else {
     return (
       <div className="flex container p-2 my-4 bg-blue-300">
-        {nationTop ? nationTop.map((p: PointsPlayer) => <div>{p.player.fullName}</div>) : null}
+        {nationTop ? nationTop.map((p: PointsPlayer) => <div key={p.player.id}>{p.player.fullName}</div>) : null}
       </div>
     );
   }

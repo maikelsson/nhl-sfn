@@ -17,15 +17,19 @@ export const GameCard = (props: Props) => {
     <div className="flex hover:bg-pink-200 transition-all bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center h-48">
       <div className="flex justify-center items-center content-center w-full">
         <TeamItem team={props.game.teams.home} />
-        <GameStatus
-          info={{
-            homeScore: props.game.teams.home.score,
-            awayScore: props.game.teams.away.score,
-            status: props.game.status.detailedState,
-            startTime: props.game.gameDate,
-          }}
-        />
-        <TeamItem team={props.game.teams.away} />
+        <div>
+          <GameStatus
+            info={{
+              homeScore: props.game.teams.home.score,
+              awayScore: props.game.teams.away.score,
+              status: props.game.status.detailedState,
+              startTime: props.game.gameDate,
+            }}
+          />
+        </div>
+        <div>
+          <TeamItem team={props.game.teams.away} />
+        </div>
       </div>
       <div className="hidden lg:hidden md:flex w-full bg-red-300">medium</div>
       <div className="hidden lg:flex w-full">
