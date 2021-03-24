@@ -16,7 +16,7 @@ export const Teams = (props: Props) => {
     setLoading(true);
     const getTeams = async (): Promise<void> => {
       try {
-        const res = await axios.get("/api/v1/teams");
+        const res = await axios.get("https://gentle-tor-21418.herokuapp.com/api/v1/teams");
         setTeams(res.data.data);
       } catch (error) {
         console.log(error.message);
