@@ -12,7 +12,6 @@ import {
 
 export const parseResponse = async (games: Games[]): Promise<Games[]> => {
   let g: Games[] = games;
-  console.log("games", games);
   for (let i = 0; i < games.length; i++) {
     const homeTeam: TeamDetailsShort = {
       id: games[i].teams.home.team.id,

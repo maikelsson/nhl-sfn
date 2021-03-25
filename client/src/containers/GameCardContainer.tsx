@@ -16,10 +16,8 @@ const Container = (props: Props) => {
   const [error, setError] = React.useState(null);
 
   const getScoresWithDate = React.useCallback(async (): Promise<void> => {
-    console.log("Scores selected date changed");
     const response: ScoreResponse = await findScoresByDate(dateToQueryFormat(props.selectedDate));
     if (response.success) {
-      console.log(response);
       setScores(response.data);
     } else {
       setError(response.data);
