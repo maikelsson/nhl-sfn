@@ -9,12 +9,7 @@ interface Props {
 }
 
 const CustomDropDown = (props: Props) => {
-  React.useEffect(() => {
-    console.log("useEffect nationality changed");
-  }, [props.selectedNationality]);
-
   const dispatch = useDispatch();
-
   return (
     <div className="hidden sm:flex  ">
       <div className="relative inline-flex ">

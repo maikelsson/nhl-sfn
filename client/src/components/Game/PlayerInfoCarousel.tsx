@@ -32,17 +32,11 @@ export const PlayerInfoCarousel = (props: Props) => {
     }
   };
 
-  React.useEffect(() => {
-    //console.log(props.points);
-  }, []);
-
   const prevComponent = () => {
-    console.log("prev");
     setPageId(1);
   };
 
   const nextComponent = () => {
-    console.log("next");
     setPageId(0);
   };
 

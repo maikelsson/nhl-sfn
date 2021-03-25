@@ -14,9 +14,9 @@ export const GameCard = (props: Props) => {
   }, []);
 
   return (
-    <div className="flex hover:bg-pink-200 transition-all bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center h-48">
+    <div className="flex transition-all bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center h-48">
       <div className="flex justify-center items-center content-center w-full">
-        <TeamItem team={props.game.teams.home} />
+        <TeamItem team={props.game.teams.home}></TeamItem>
         <div>
           <GameStatus
             info={{
@@ -41,7 +41,6 @@ export const GameCard = (props: Props) => {
           awayAbbr={props.game.teams.away.team.abbreviation}
         />
       </div>
-      <div className="container md:hidden bg-green-300">button</div>
     </div>
   );
 };

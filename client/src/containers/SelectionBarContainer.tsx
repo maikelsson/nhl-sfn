@@ -15,8 +15,8 @@ const Container = (props: Props) => {
   return (
     <div className="flex flex-col overflow-auto sm:w-5/6 w-full sm:my-2">
       <div className=" bg-gray-100 shadow rounded h-14 mb-3 flex items-center sm:justify-items-center">
-        <ConnectedCustomDropDown options={options} />
-        <ConnectedDatePicker />
+        <ConnectedCustomDropDown options={options}></ConnectedCustomDropDown>
+        <ConnectedDatePicker></ConnectedDatePicker>
       </div>
     </div>
   );

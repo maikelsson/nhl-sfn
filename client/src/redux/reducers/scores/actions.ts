@@ -1,8 +1,6 @@
 import { SelectionActionTypes, SET_DATE, SET_NATIONALITY } from "./types";
 
 export const setNationality = (selection: string): SelectionActionTypes => {
-  console.log("dispatching", selection);
-
   return {
     type: SET_NATIONALITY,
     payload: selection,

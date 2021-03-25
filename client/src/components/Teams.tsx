@@ -16,7 +16,7 @@ export const Teams = (props: Props) => {
     setLoading(true);
     const getTeams = async (): Promise<void> => {
       try {
-        const res = await axios.get("https://gentle-tor-21418.herokuapp.com/api/v1/teams");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/teams`);
         setTeams(res.data.data);
       } catch (error) {
         console.log(error.message);
@@ -32,18 +32,14 @@ export const Teams = (props: Props) => {
 
   return (
     <div>
-      <div>
-        {teams.map((t) => (
-          <>
-            <div className="flex" key={t.name}>
-              <i className="w-10" key={t.id}>
-                <img src={`/images/${t.id}`} alt=""></img>
-              </i>
-              {t.name}
-            </div>
-          </>
-        ))}
-      </div>
+      {teams.map((t, id) => (
+        <div className="flex" key={id}>
+          <i className="w-10">
+            <img src={`${process.env.REACT_APP_API_URL}/images/` + t.id} alt=""></img>
+          </i>
+          {t.name}
+        </div>
+      ))}
     </div>
   );
 };

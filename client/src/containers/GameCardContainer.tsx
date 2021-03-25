@@ -54,7 +54,7 @@ const Container = (props: Props) => {
     <div className="flex flex-col overflow-auto sm:w-5/6 w-full">
       {scores || loading ? (
         <>
-          <ConnectedNationTopPlayers scores={scores} />
+          <ConnectedNationTopPlayers scores={scores}></ConnectedNationTopPlayers>
           {scores.map((g, id) => (
             <div key={id}>
               <GameCard game={g} />

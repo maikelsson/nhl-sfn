@@ -13,7 +13,7 @@ export const TeamItem = (props: Props) => {
   const displayLeagueRecord = (records: LeagueRecord) => {
     return (
       <div>
-        <p>
+        <p className="text-gray-500 text-sm">
           {records.wins}-{records.losses}-{records.ot}
         </p>
       </div>
@@ -31,7 +31,7 @@ export const TeamItem = (props: Props) => {
       </div>
       <div className="mt-2 text-center leading-none text-current flex flex-col justify-end">
         <p className="font-normal">{props.team.team.teamName}</p>
-        <p className="text-gray-500 text-sm">{displayLeagueRecord(props.team.leagueRecord)}</p>
+        {displayLeagueRecord(props.team.leagueRecord)}
       </div>
     </div>
   );

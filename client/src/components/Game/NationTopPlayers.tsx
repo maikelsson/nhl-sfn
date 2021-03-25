@@ -27,6 +27,9 @@ const NationTopPlayers = (props: Props) => {
         }
       });
     });
+    arr.sort(
+      (p1: PointsPlayer, p2: PointsPlayer) => p2.stats.goals + p2.stats.assists - (p1.stats.goals + p1.stats.assists)
+    );
     setNationTop(arr);
   }, [props.scores, props.selectedNationality]);
 
@@ -44,8 +47,16 @@ const NationTopPlayers = (props: Props) => {
     );
   } else {
     return (
-      <div className="flex container p-2 my-4 bg-blue-300">
-        {nationTop ? nationTop.map((p: PointsPlayer) => <div key={p.player.id}>{p.player.fullName}</div>) : null}
+      <div className="flex w-full flex-wrap justify-center mb-2">
+        {nationTop && nationTop.length > 0 ? (
+          nationTop.slice(0, 10).map((p: PointsPlayer, c: number) => (
+            <div className="min-w-2/4 p-2 m-2 bg-gray-100 shadow-lg md:rounded text-sm" key={p.player.id}>
+              {c + 1}. {p.player.fullName} {p.stats.goals}+{p.stats.assists}
+            </div>
+          ))
+        ) : (
+          <div>No players for selected country :(</div>
+        )}
       </div>
     );
   }
