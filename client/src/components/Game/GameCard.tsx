@@ -14,7 +14,7 @@ export const GameCard = (props: Props) => {
   }, []);
 
   return (
-    <div className="flex transition-all bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center h-48">
+    <div className="flex transition-all bg-gray-100 shadow-lg mb-3 md:rounded justify-center items-center h-48 overflow-auto">
       <div className="flex justify-center items-center content-center w-full">
         <TeamItem team={props.game.teams.home}></TeamItem>
         <div>
@@ -31,7 +31,7 @@ export const GameCard = (props: Props) => {
           <TeamItem team={props.game.teams.away} />
         </div>
       </div>
-      <div className="hidden lg:hidden md:flex w-full bg-red-300">medium</div>
+      {/* <div className="hidden lg:hidden md:flex w-full bg-red-300">medium</div> */}
       <div className="hidden lg:flex w-full">
         <PlayerInfoCarousel
           points={props.game.points}

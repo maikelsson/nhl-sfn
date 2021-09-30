@@ -1,7 +1,7 @@
 import React from "react";
-import { DropDownOptions } from "./interfaces/interface";
-import { setNationality } from "../../redux/reducers/scores/actions";
 import { connect, useDispatch } from "react-redux";
+import { setNationality } from "../../redux/reducers/scores/actions";
+import { DropDownOptions } from "./interfaces/interface";
 
 interface Props {
   options: DropDownOptions;
@@ -11,7 +11,7 @@ interface Props {
 const CustomDropDown = (props: Props) => {
   const dispatch = useDispatch();
   return (
-    <div className="hidden sm:flex  ">
+    <div className=" ">
       <div className="relative inline-flex ">
         <svg
           className="w-2 h-2 absolute top-0 right-0 m-3 pointer-events-none font-mono"
@@ -24,13 +24,13 @@ const CustomDropDown = (props: Props) => {
             fillRule="nonzero"
           />
         </svg>
-        <form className="text-sm transition-all bg-red-500">
+        <form className="text-sm transition-all ">
           <select
             value={props.selectedNationality}
             onChange={(e) => dispatch(setNationality(e.target.value))}
             className="bg-gray-100 h-8 pl-3 pr-8 border-none active:border-none focus:outline-none appearance-none cursor-pointer"
           >
-            <option value="" className="bg-red-300">
+            <option value="" className=" truncate md:overflow-clip">
               {props.options.header}
             </option>
             {props.options.content.map((c, i) => (

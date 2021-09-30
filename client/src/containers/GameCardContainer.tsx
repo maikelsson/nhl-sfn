@@ -16,7 +16,9 @@ const Container = (props: Props) => {
   const [error, setError] = React.useState(null);
 
   const getScoresWithDate = React.useCallback(async (): Promise<void> => {
-    const response: ScoreResponse = await findScoresByDate(dateToQueryFormat(props.selectedDate));
+    const response: ScoreResponse = await findScoresByDate(
+      dateToQueryFormat(props.selectedDate)
+    );
     if (response.success) {
       setScores(response.data);
     } else {
@@ -49,10 +51,12 @@ const Container = (props: Props) => {
   }
 
   return (
-    <div className="flex flex-col overflow-auto sm:w-5/6 w-full">
+    <div className="flex flex-col overflow-auto sm:w-5/6 w-full ">
       {scores || loading ? (
         <>
-          <ConnectedNationTopPlayers scores={scores}></ConnectedNationTopPlayers>
+          <ConnectedNationTopPlayers
+            scores={scores}
+          ></ConnectedNationTopPlayers>
           {scores.map((g, id) => (
             <div key={id}>
               <GameCard game={g} />

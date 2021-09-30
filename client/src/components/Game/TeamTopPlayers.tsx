@@ -16,6 +16,9 @@ interface PlayerProps {
 
 const TeamTopPlayers = (props: Props) => {
   React.useEffect(() => {}, [props.selectedNationality]);
+  console.log(props.leaders);
+
+  if (!props.leaders) return <>N/A</>;
   return (
     <div className=" text-sm flex p-1 ml-1">
       <div className="text-gray-800 font-medium">{props.abbreviation}</div>
